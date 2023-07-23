@@ -17,16 +17,16 @@ export const FeedbackProvider =({children}) => {
     },[])
 
     const fetchFeedback = async() => {
-        const response = await fetch("/feedback?_sort=_id&-order=_desc")
+        const response = await fetch("/feedback?_sort=_id&_order=_desc")
         const data = await response.json()
         setFeedback(data)
         setIsLoading(false)
     }
-    const addFeedback = async(newFeedback) => {
-        const response = await fetch("/feedback", {
+    const addFeedback = async (newFeedback) => {
+        const response = await fetch('/feedback', {
             method: 'POST',
             headers: {
-                'Content-Type': 'appication/json',
+                'Content-Type': 'appication/json'
             },
             body: JSON.stringify(newFeedback),
         })
@@ -44,7 +44,7 @@ export const FeedbackProvider =({children}) => {
     }
 
     const updateFeedback = async (id,updItem) => {
-        const response= await fetch(`/feedback/${id}`,{
+        const response1= await fetch(`/feedback/${id}`,{
            method: 'PUT',
            headers: {
             'Content-Type': 'application/json'
@@ -52,9 +52,9 @@ export const FeedbackProvider =({children}) => {
            body: JSON.stringify(updItem)
         })
 
-        const data= response.json()
+        const data1= await response1.json()
         setFeedback(
-            feedback.map((item) => (item.id=== id ? {...item,...data} : item))
+            feedback.map((item) => (item.id=== id ? {...item,...data1} : item))
         )
     }
 

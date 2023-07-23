@@ -1,8 +1,8 @@
 {
   "feedback": [
     {
-      "text": "This is from db.json 1 edit",
-      "rating": 8,
+      "text": "very good service",
+      "rating": 5,
       "id": 1
     },
     {
@@ -14,15 +14,6 @@
       "id": 3,
       "rating": 9,
       "text": "This is from db.json 3"
-    },
-    {
-      "id": 4
-    },
-    {
-      "id": 5
-    },
-    {
-      "id": 6
     }
   ]
 }
