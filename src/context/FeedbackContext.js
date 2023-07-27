@@ -17,7 +17,7 @@ export const FeedbackProvider =({children}) => {
     },[])
 
     const fetchFeedback = async() => {
-        const response = await fetch("/feedback?_sort=_id&_order=_desc")
+        const response = await fetch('/feedback?_sort=id&_order=desc')
         const data = await response.json()
         setFeedback(data)
         setIsLoading(false)
@@ -33,6 +33,7 @@ export const FeedbackProvider =({children}) => {
 
         const data = await response.json()
         setFeedback([data, ...feedback])
+        console.log('From addfeedback:',newFeedback, data)
         }
 
     const deleteFeedback = async(id) => {
@@ -44,18 +45,21 @@ export const FeedbackProvider =({children}) => {
     }
 
     const updateFeedback = async (id,updItem) => {
-        const response1= await fetch(`/feedback/${id}`,{
+        const response= await fetch(`/feedback/${id}`,{
            method: 'PUT',
            headers: {
             'Content-Type': 'application/json'
            } ,
-           body: JSON.stringify(updItem)
+           body: JSON.stringify(updItem),
         })
 
-        const data1= await response1.json()
-        setFeedback(
-            feedback.map((item) => (item.id=== id ? {...item,...data1} : item))
-        )
+        const data= await response.json()
+        setFeedback(feedback.map((item) => (item.id=== id ? data: item)))
+
+        setFeedbackEdit({
+            item: {},
+            edit: false,
+        })
     }
 
     const editFeedback = (item) => {
