@@ -26,14 +26,13 @@ export const FeedbackProvider =({children}) => {
         const response = await fetch('/feedback', {
             method: 'POST',
             headers: {
-                'Content-Type': 'appication/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(newFeedback),
         })
 
         const data = await response.json()
         setFeedback([data, ...feedback])
-        console.log('From addfeedback:',newFeedback, data)
         }
 
     const deleteFeedback = async(id) => {
